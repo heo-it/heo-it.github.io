@@ -5,9 +5,18 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@mdx-js/loader':
+    specifier: ^3.1.0
+    version: 3.1.0(acorn@8.14.1)
+  '@mdx-js/react':
+    specifier: ^3.1.0
+    version: 3.1.0(@types/react@19.0.4)(react@19.1.0)
   '@next/mdx':
     specifier: ^15.2.4
-    version: 15.2.4
+    version: 15.2.4(@mdx-js/loader@3.1.0)(@mdx-js/react@3.1.0)
+  '@types/mdx':
+    specifier: ^2.0.13
+    version: 2.0.13
   gray-matter:
     specifier: ^4.0.3
     version: 4.0.3
@@ -367,6 +376,21 @@ packages:
     dev: false
     optional: true
 
+  /@mdx-js/loader@3.1.0(acorn@8.14.1):
+    resolution: {integrity: sha512-xU/lwKdOyfXtQGqn3VnJjlDrmKXEvMi1mgYxVmukEUtVycIz1nh7oQ40bKTd4cA7rLStqu0740pnhGYxGoqsCg==}
+    peerDependencies:
+      webpack: '>=5'
+    peerDependenciesMeta:
+      webpack:
+        optional: true
+    dependencies:
+      '@mdx-js/mdx': 3.1.0(acorn@8.14.1)
+      source-map: 0.7.4
+    transitivePeerDependencies:
+      - acorn
+      - supports-color
+    dev: false
+
   /@mdx-js/mdx@3.1.0(acorn@8.14.1):
     resolution: {integrity: sha512-/QxEhPAvGwbQmy1Px8F899L5Uc2KZ6JtXwlCgJmjSTBedwOZkByYcBG4GceIGPXRDsmfxhHazuS+hlOShRLeDw==}
     dependencies:
@@ -420,7 +444,7 @@ packages:
       fast-glob: 3.3.1
     dev: true
 
-  /@next/mdx@15.2.4:
+  /@next/mdx@15.2.4(@mdx-js/loader@3.1.0)(@mdx-js/react@3.1.0):
     resolution: {integrity: sha512-/T4iJYAbryNW9v5+8UHecSH524wUMgxl5ZHHklt9oXdtbb+tIW6LsRYtiderr4mK9GUDSNFrxN+UNlGJysNhxg==}
     peerDependencies:
       '@mdx-js/loader': '>=0.15.0'
@@ -431,6 +455,8 @@ packages:
       '@mdx-js/react':
         optional: true
     dependencies:
+      '@mdx-js/loader': 3.1.0(acorn@8.14.1)
+      '@mdx-js/react': 3.1.0(@types/react@19.0.4)(react@19.1.0)
       source-map: 0.7.4
     dev: false
 
