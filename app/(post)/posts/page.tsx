@@ -21,3 +21,5 @@ const PostPage = async () => {
 };
 
 export default PostPage;
+
+export const dynamic = 'force-dynamic';

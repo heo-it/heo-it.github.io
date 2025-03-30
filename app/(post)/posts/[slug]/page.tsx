@@ -23,3 +23,5 @@ const PostDetailPage = async ({ params }: { params: Promise<{ slug: string }> })
 };
 
 export default PostDetailPage;
+
+export const dynamic = 'force-dynamic';
