@@ -1,18 +1,25 @@
 import createMDX from '@next/mdx';
 
 const withMDX = createMDX({
-  // TODO - Markdown 플러그인 설정
+  // MDX 플러그인 설정
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
 });
 
-export default withMDX((phase) => {
-  const isDev = phase === process.env.NODE_ENV;
-  /**
-   * @type {import('next').NextConfig}
-   */
-  const nextConfig = {
-    output: 'export',
-    assetPrefix: isDev ? undefined : 'https://heo-it.github.io/',
-    pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  };
-  return nextConfig;
-});
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  images: {
+    unoptimized: true, // static export에서 필요
+  },
+  assetPrefix: process.env.NODE_ENV === 'production' ? 'https://heo-it.github.io/' : undefined,
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+};
+
+// 개발 환경 로깅
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('nextConfig:', nextConfig);
+
+export default withMDX(nextConfig);
