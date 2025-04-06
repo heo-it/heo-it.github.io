@@ -1,15 +1,16 @@
 import Link from 'next/link';
+import { getAllPostSlugs, getPostBySlug } from '../../../entities/post/model/posts';
 
 const PostPage = async () => {
-  const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
-    method: 'GET',
+  const slugs = getAllPostSlugs();
+  const posts = slugs.map((slug) => {
+    const { metadata } = getPostBySlug(slug);
+    return { slug, metadata };
   });
-  const data = await result.json();
 
-  // TODO - UI 작업
   return (
     <div>
-      {data.map((post: { slug: string; metadata: { title: string; date: string } }) => (
+      {posts.map((post) => (
         <div key={post.slug}>
           <h2>{post.metadata.title}</h2>
           <p>{post.metadata.date}</p>
@@ -21,5 +22,3 @@ const PostPage = async () => {
 };
 
 export default PostPage;
-
-export const dynamic = 'force-dynamic';
